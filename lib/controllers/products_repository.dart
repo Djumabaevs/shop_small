@@ -1,23 +1,11 @@
-import 'package:get/get.dart';
-import 'package:practice/controllers/products_repository.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class ProductsController extends GetxController {
-  ProductsRepository productsRepository = ProductsRepository();
-  RxBool loading = false.obs;
-  List products = [].obs;
-  var showGrid = false.obs;
+class ProductsRepository {
+  var url = "https://fakestoreapi.com/products";
 
-  ProductsController() {
-    loadProductsFromRepo();
-  }
-
-  loadProductsFromRepo() async {
-    loading(true);
-    products = await productsRepository.loadProductsFromApi();
-    loading(false);
-  }
-
-  toggleGrid() {
-    showGrid(!showGrid.value);
+  loadProductsFromApi() async {
+    var response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
   }
 }
