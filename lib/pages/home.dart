@@ -6,23 +6,39 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        leading: BackButton(),
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-        title: Text(
-          "Flutter demo",
-          style: TextStyle(color: Colors.black),
-        ),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-          IconButton(
-              onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined)),
+      appBar: _buildAppBar(),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              DropdownButton<dynamic>(
+                items: [DropdownMenuItem(child: Text('Clothes'))],
+                onChanged: (value) {},
+              ),
+            ],
+          )
         ],
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      centerTitle: true,
+      leading: BackButton(),
+      iconTheme: IconThemeData(color: Colors.black),
+      elevation: 0,
+      title: Text(
+        "ShopKG",
+        style: TextStyle(color: Colors.black),
+      ),
+      actions: [
+        IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        IconButton(
+            onPressed: () {}, icon: Icon(Icons.notifications_none_outlined)),
+        IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined)),
+      ],
     );
   }
 }
